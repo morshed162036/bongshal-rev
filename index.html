@@ -87,6 +87,95 @@
                   flex-direction: row; /* Ensures items are in a row */
                   }
                   }
+                  /* spin section start */
+                  
+                  .wheel-content {
+        text-align: center;
+        padding-top: 10px;
+      }
+      .wheel-container {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+      }
+      .wheel-indicator {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 20px solid red;
+      }
+      #wheelCanvas {
+        width: 100%;
+        height: auto;
+        max-width: 300px;
+      }
+
+      .spin-btn-container {
+        margin-top: -185px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      .spinBtn {
+        padding: 12px 12px;
+        font-size: 15px;
+        background-color: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+
+      .spinBtn:hover {
+        background-color: #2563eb;
+      }
+
+      #spin-result {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #111827;
+      }
+
+      @media (max-width: 400px) {
+        .spin-btn-container {
+          margin-top: -172px;
+        }
+        .wheel-container {
+          width: 250px;
+          height: 250px;
+        }
+        .spinBtn {
+          width: 70px;
+          height: 70px;
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 300px) {
+        .wheel-container {
+          width: 200px;
+          height: 200px;
+        }
+        .spinBtn {
+          width: 60px;
+          height: 60px;
+          font-size: 14px;
+        }
+      }
+      /* spin section end */
                </style>
                <meta content="max-image-preview:large" name="robots">
                <link href="/" rel="canonical">
@@ -229,6 +318,8 @@
                            <div class="cmto-header-utility__item cmto-header-utility__item--account cmto-header-utility__item--toggle-hybrid js-CmtoNavigation-utilityItem"><a class="cmto-header-utility__link" data-js="" data-qa="" data-open-href data-open-class="authentication-form-modal" data-open-href-reuse-modal href="#"><img class="cmto-header-utility__icon" id="login-image" height="24" src="https://www.revzilla.com/images/redline/support/header/account_icon-895e762bda4d1b16a29085a786328ca5.svg?vsn=d" width="24"></a></div>
                            <div class="cmto-header-utility__item cmto-header-utility__item--cart js-CmtoNavigation-utilityItem"><a class="cmto-header-utility__link" data-qa="cart-link" href="/cart"><img class="cmto-header-utility__icon" height="24" src="https://www.revzilla.com/images/redline/support/header/cart_icon-72450537cc5567ae499c302162073e82.svg?vsn=d" width="24"><span class="cmto-header-utility__cart-quantity js-ProductForm-cartQty" style="display: none">0</span></a></div>
                         </div>
+                        
+
                         <div class="cmto-header__search cmto-header-layout__center">
                            <a class="ui-button ui-button--large" data-open-class="vehicle-selector" data-open-href href="/vehicle_selector?workflow=shop_by_vehicle">
                               <?xml version="1.0" encoding="UTF-8"?>
@@ -4431,6 +4522,20 @@
                         </div>
                         </section>
                      </div>
+
+<!-- spin section start  -->
+                 <div class="wheel-content">
+      <h2>🎯 Spin the Wheel</h2>
+      <div class="wheel-container">
+        <div class="wheel-indicator"></div>
+        <canvas id="wheelCanvas" width="300" height="300"></canvas>
+        <div class="spin-btn-container">
+          <button class="spinBtn" id="spinBtn">Spin</button>
+        </div>
+      </div>
+      <div id="spin-result"></div>
+    </div>
+               <!-- spin section end  -->
                      <section aria-label="Shop by vehicle" class="component component--stepped-shop-your-ride stepped-shop-your-ride" data-js-component="SteppedShopYourRide" data-js-scheduled-component-id="152984" data-element-name="Stepped Shop Your Ride">
                         <div class="stepped-shop-your-ride__wrapper">
                            <div class="shop-by">
@@ -4722,6 +4827,7 @@
                      <div class="cmto-nav-panel__content js-Panel-content"></div>
                   </div>
                </div>
+
                <footer class="footer footer--shop" data-js="App.footer" role="contentinfo">
                   <div class="footer__reviews-wrapper">
                      <div class="footer__title">
@@ -5149,6 +5255,89 @@
       modalOverlay.style.display = "none";
     });
   });
+  // spin section start
+const canvas = document.getElementById("wheelCanvas");
+const ctx = canvas.getContext("2d");
+const spinBtn = document.getElementById("spinBtn");
+const resultText = document.getElementById("spin-result");
+
+const segments = [
+  "20% OFF",
+  "50% OFF",
+  "Try Again",
+  "Free Gift",
+  "30% OFF",
+  "5% OFF",
+  "No Luck",
+  "10% OFF",
+];
+
+const segmentCount = segments.length;
+const segmentAngle = 360 / segmentCount;
+const radius = canvas.width / 2;
+const colors = ["#00C9A7", "#3B82F6"];
+
+let rotationDeg = 0;
+let hasSpun = false;
+
+function drawWheel(angleOffset = 0) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < segmentCount; i++) {
+    const startAngle = ((i * segmentAngle + angleOffset) * Math.PI) / 180;
+    const endAngle = (((i + 1) * segmentAngle + angleOffset) * Math.PI) / 180;
+
+    ctx.beginPath();
+    ctx.moveTo(radius, radius);
+    ctx.arc(radius, radius, radius, startAngle, endAngle);
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.fill();
+    ctx.stroke();
+
+    // Text
+    const textAngle = (startAngle + endAngle) / 2;
+    ctx.save();
+    ctx.translate(radius, radius);
+    ctx.rotate(textAngle);
+    ctx.textAlign = "right";
+    ctx.fillStyle = "#fff";
+    ctx.font = "bold 14px sans-serif";
+    ctx.fillText(segments[i], radius - 10, 5);
+    ctx.restore();
+  }
+}
+
+drawWheel();
+
+spinBtn.addEventListener("click", () => {
+  if (hasSpun) {
+    alert("You have already spun the wheel!");
+    return;
+  }
+
+  hasSpun = true;
+
+  const randomExtra = Math.floor(Math.random() * 360);
+  const totalRotation = 360 * 5 + randomExtra;
+
+  let current = 0;
+  const interval = setInterval(() => {
+    drawWheel(current);
+    current += 10;
+    if (current >= totalRotation) {
+      clearInterval(interval);
+      const finalDeg = totalRotation % 360;
+      drawWheel(finalDeg);
+
+      const adjustedAngle = (360 - finalDeg + 270) % 360;
+      const index = Math.floor(adjustedAngle / segmentAngle) % segmentCount;
+
+      const winner = segments[index];
+      resultText.innerHTML = `🎉 You got: <strong>${winner}</strong>`;
+    }
+  }, 10);
+});
+// spin section end
+
 </script>
 
             </body>
