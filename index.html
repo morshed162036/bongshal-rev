@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us" ng-app="app" ng-controller="RootController as rootVm">
 
+
 <head>
    <script charset="UTF-8" data-cfasync="false" data-domain-script="4f044e03-6afb-4787-83fa-670d6791a487"
       src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" type="text/javascript"></script>
@@ -273,6 +274,95 @@
 
       /* navbar display */
       /* new css end */
+     /* spin section start */
+                  
+                  .wheel-content {
+        text-align: center;
+        padding-top: 10px;
+      }
+      .wheel-container {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+      }
+      .wheel-indicator {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 20px solid red;
+      }
+      #wheelCanvas {
+        width: 100%;
+        height: auto;
+        max-width: 300px;
+      }
+
+      .spin-btn-container {
+        margin-top: -185px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      .spinBtn {
+        padding: 12px 12px;
+        font-size: 15px;
+        background-color: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+
+      .spinBtn:hover {
+        background-color: #2563eb;
+      }
+
+      #spin-result {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #111827;
+      }
+
+      @media (max-width: 400px) {
+        .spin-btn-container {
+          margin-top: -172px;
+        }
+        .wheel-container {
+          width: 250px;
+          height: 250px;
+        }
+        .spinBtn {
+          width: 70px;
+          height: 70px;
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 300px) {
+        .wheel-container {
+          width: 200px;
+          height: 200px;
+        }
+        .spinBtn {
+          width: 60px;
+          height: 60px;
+          font-size: 14px;
+        }
+      }
+      /* spin section end */
    </style>
    <meta content="max-image-preview:large" name="robots">
    <link href="/" rel="canonical">
@@ -7976,6 +8066,7 @@
                                              </div>
                                           </a>
                                        </div>
+
                                        <div class="related-products__product-tile-wrapper"
                                           data-js="ProductTile.wrapper">
                                           <a class="related-products__product-tile product-tile" data-index="11"
@@ -7985,6 +8076,64 @@
                                              title="Shoei RF-1400 Helmet">
                                              <div class="badge badge--vertical">
                                                 <div class="badge__message badge__message--staff-picks-2019">Staff Pick
+
+                                    </div>
+                                 </div>
+                              </div>
+                        </div>
+                        </section>
+                     </div>
+
+<!-- spin section start  -->
+                 <div class="wheel-content">
+      <h2>🎯 Spin the Wheel</h2>
+      <div class="wheel-container">
+        <div class="wheel-indicator"></div>
+        <canvas id="wheelCanvas" width="300" height="300"></canvas>
+        <div class="spin-btn-container">
+          <button class="spinBtn" id="spinBtn">Spin</button>
+        </div>
+      </div>
+      <div id="spin-result"></div>
+    </div>
+               <!-- spin section end  -->
+                     <section aria-label="Shop by vehicle" class="component component--stepped-shop-your-ride stepped-shop-your-ride" data-js-component="SteppedShopYourRide" data-js-scheduled-component-id="152984" data-element-name="Stepped Shop Your Ride">
+                        <div class="stepped-shop-your-ride__wrapper">
+                           <div class="shop-by">
+                              <div class="shop-by__heading">
+                                 <div class="shop-by__heading-text">Shop Your Ride</div>
+                                 <span class="shop-by-bike__garage-link ui-link" data-js="ShopByBike.garageFlyoutToggle">My Garage</span>
+                              </div>
+                              <div class="stepped-shop-your-ride__content-wrapper">
+                                 <p class="js-SteppedShopYourRide-partsLabel ui-copy">I&#39;m shopping for…</p>
+                                 <section class="css-tabs stepped-shop-your-ride__tabs" role="tablist">
+                                    <input class="css-tabs__input js-SteppedShopYourRide-tabToggle" name="tabs-152984-1" type="radio" autocomplete="off" id="aftermarket-parts-152984-1"   />
+                                    <label data-qa="shop-by-vehicle-aftermarket-tab" class="css-tabs__label js-SteppedShopYourRide-tabLabel" for="aftermarket-parts-152984-1" role="tab">
+                                    Aftermarket Parts
+                                    <span class="show-for-medium stepped-shop-your-ride__tooltip">
+                                    <span class="redline-tooltip" data-active="false" data-js="Tooltip.Container"><span class="redline-tooltip__icon" data-js="Tooltip.Icon"><span class="redline-tooltip__popout-window" data-js="Tooltip.PopoutWindow"><span class="redline-tooltip__tooltip-arrow" data-js="Tooltip.Arrow"></span><span class="redline-tooltip__text-content" data-js="Tooltip.Content">Parts &amp; accessories designed to fit your vehicle by a brand other than its manufacturer</span></span></span></span>
+                                    </span>
+                                    </label>
+                                    <section class="css-tabs__panel" data-js="TabbedShopYourRide.bikeSelect">
+                                       <div class="tabbed-shop-your-ride__form-wrapper">
+                                          <div class="shop-by-bike__form">
+                                             <form class="shop-by-bike__select-dimensions" data-js="VehicleSelector.form" autocomplete="off">
+                                                <input name="is_oem" type="hidden" value="false">
+                                                <input name="facet_ids" type="hidden" value="">
+                                                <input name="suppress_oem_redirect" type="hidden" value="true">
+                                                <input type="radio" id="shop-by-bike__type-step-1-aftermarket" name="shop-by-bike__steps" class="ui-radio-button shop-by-bike__step-toggle" checked>
+                                                <div class="shop-by-bike__step">
+                                                   <p class="shop-by-bike__label ui-copy">My vehicle is a…</p>
+                                                   <select aria-label="Select vehicle type" class="shop-by-bike__select-dimension-select shop-by-bike__select-dimension-select--type ui-select" data-field-name="Bike Type" data-js="VehicleSelector.select" data-vehicle-selector-model="vehicle-type" name="type">
+                                                      <option data-js="VehicleSelector.defaultOption" value="">Type</option>
+                                                      <option value="1">Street Bike</option>
+                                                      <option value="4">Dirt Bike</option>
+                                                      <option value="16">UTV/ATV</option>
+                                                   </select>
+                                                   <div class="shop-by-bike__steppers">
+                                                      <span class="shop-by-bike__prev-step js-ShopYourRide-prevStep js-SteppedShopYourRide-toggleReset ui-link">&lt; Back</span>
+                                                      <label class="shop-by-bike__next-step ui-button" data-qa="vehicle-finder-next-step-aftermarket-year" data-vehicle-selector-model="vehicle-years" disabled for="shop-by-bike__year-step-1-aftermarket">Next</label>
+                                                   </div>
                                                 </div>
                                              </div>
                                              <meta content="Shoei RF-1400 Helmet" itemprop="name">
@@ -8953,9 +9102,27 @@
                            </div>
                         </div>
                      </div>
+
                      <div class="category-preview__shop-link-wrapper">
                         <a class="ui-arrow-link" data-link="https://www.revzilla.com/mesh-motorcycle-gear"
                            data-call-to-action="." href="https://www.revzilla.com/mesh-motorcycle-gear">.</a>
+
+                  </div>
+               </div>
+               <label class="cmto-mask__mask" for="rpm-sales-pitch-panel"></label>
+               <div class="js-CmtoNavigation-accountPanel">
+                  <input autocomplete="off" class="js-Panel-input cmto-nav-panel__toggle" id="account" type="checkbox">
+                  <div class="js-CmtoNavigation-ajaxMenu cmto-nav-panel cmto-nav-panel--child cmto-nav-panel cmto-nav-panel--from-right js-CmtoNavigation-panel cmto-mask__content" data-for="account" data-panel-id="account">
+                     <div class="cmto-nav-panel__header"><label class="cmto-nav-panel__header-back" for="account"><span>Welcome!</span></label><label class="cmto-nav-panel__header-close" for="account"></label></div>
+                     <div class="cmto-nav-panel__content js-Panel-content"></div>
+                  </div>
+               </div>
+
+               <footer class="footer footer--shop" data-js="App.footer" role="contentinfo">
+                  <div class="footer__reviews-wrapper">
+                     <div class="footer__title">
+                        Moto Dreams, Delivered
+
                      </div>
                   </div>
                </section>
@@ -10565,12 +10732,102 @@
                rootMargin: '0px 0px 100px 0px' 
             });
 
+
             sliderContainer.querySelectorAll('.lazy-slider-image').forEach(img => {
                sliderImageObserver.observe(img);
             });
          }
-      });
-   </script>
-</body>
+
+    // Hide the modal when close button is clicked
+    closeModal.addEventListener("click", function (e) {
+      e.preventDefault(); // prevent default anchor behavior
+      modalOverlay.style.display = "none";
+    });
+  });
+  // spin section start
+const canvas = document.getElementById("wheelCanvas");
+const ctx = canvas.getContext("2d");
+const spinBtn = document.getElementById("spinBtn");
+const resultText = document.getElementById("spin-result");
+
+const segments = [
+  "20% OFF",
+  "50% OFF",
+  "Try Again",
+  "Free Gift",
+  "30% OFF",
+  "5% OFF",
+  "No Luck",
+  "10% OFF",
+];
+
+const segmentCount = segments.length;
+const segmentAngle = 360 / segmentCount;
+const radius = canvas.width / 2;
+const colors = ["#00C9A7", "#3B82F6"];
+
+let rotationDeg = 0;
+let hasSpun = false;
+
+function drawWheel(angleOffset = 0) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < segmentCount; i++) {
+    const startAngle = ((i * segmentAngle + angleOffset) * Math.PI) / 180;
+    const endAngle = (((i + 1) * segmentAngle + angleOffset) * Math.PI) / 180;
+
+    ctx.beginPath();
+    ctx.moveTo(radius, radius);
+    ctx.arc(radius, radius, radius, startAngle, endAngle);
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.fill();
+    ctx.stroke();
+
+    // Text
+    const textAngle = (startAngle + endAngle) / 2;
+    ctx.save();
+    ctx.translate(radius, radius);
+    ctx.rotate(textAngle);
+    ctx.textAlign = "right";
+    ctx.fillStyle = "#fff";
+    ctx.font = "bold 14px sans-serif";
+    ctx.fillText(segments[i], radius - 10, 5);
+    ctx.restore();
+  }
+}
+
+drawWheel();
+
+spinBtn.addEventListener("click", () => {
+  if (hasSpun) {
+    alert("You have already spun the wheel!");
+    return;
+  }
+
+  hasSpun = true;
+
+  const randomExtra = Math.floor(Math.random() * 360);
+  const totalRotation = 360 * 5 + randomExtra;
+
+  let current = 0;
+  const interval = setInterval(() => {
+    drawWheel(current);
+    current += 10;
+    if (current >= totalRotation) {
+      clearInterval(interval);
+      const finalDeg = totalRotation % 360;
+      drawWheel(finalDeg);
+
+      const adjustedAngle = (360 - finalDeg + 270) % 360;
+      const index = Math.floor(adjustedAngle / segmentAngle) % segmentCount;
+
+      const winner = segments[index];
+      resultText.innerHTML = `🎉 You got: <strong>${winner}</strong>`;
+    }
+  }, 10);
+});
+// spin section end
+
+</script>
+
 
 </html>
